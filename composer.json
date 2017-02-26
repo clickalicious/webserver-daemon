@@ -1,0 +1,59 @@
+{
+  "name": "clickalicious/webserverdaemon",
+  "description": "Small utility to demonize PHP's internal webserver.",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Benjamin Carl",
+      "email": "opensource@clickalicious.de",
+      "homepage": "https://www.clickalicious.de",
+      "role": "Lead"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=5.6.0",
+    "roave/security-advisories": "dev-master as 1.0.x-dev",
+    "clickalicious/rng": "^1.1",
+    "beberlei/assert": "^2.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7",
+    "codacy/coverage": "^1.0",
+    "symfony/var-dumper": "^3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Webserverdaemon\\": "src/Webserverdaemon/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Webserverdaemon\\": "tests/Webserverdaemon/"
+    },
+    "files": ["env.php"]
+  },
+  "keywords": [
+    "composer",
+    "php",
+    "webserverdaemon",
+    "webserver",
+    "daemon",
+    "demon",
+    "demonize",
+    "unittest"
+  ],
+  "homepage": "https://clickalicious.github.io/webserverdaemon",
+  "license": "MIT",
+  "support": {
+    "email": "opensource@clickalicious.de",
+    "issues": "https://github.com/clickalicious/webserverdaemon/issues",
+    "wiki": "https://github.com/clickalicious/webserverdaemon/wiki",
+    "tests": "https://clickalicious.github.io/webserverdaemon"
+  },
+  "config": {
+    "bin-dir": "bin",
+    "preferred-install": "source"
+  }
+}

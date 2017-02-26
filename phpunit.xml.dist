@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd
+">
+  <testsuites>
+    <testsuite name="clickalicious\webserverdaemon Test Suite">
+      <directory suffix="Test.php">./tests</directory>
+    </testsuite>
+  </testsuites>
+
+  <filter>
+    <whitelist>
+      <directory>./</directory>
+      <exclude>
+        <directory>./bin</directory>
+        <directory>./docs</directory>
+        <directory>./vendor</directory>
+        <directory>env.php</directory>
+        <directory>start.php</directory>
+        <directory>stop.php</directory>
+        <directory>restart.php</directory>
+        <directory>status.php</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>

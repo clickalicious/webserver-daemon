@@ -1,0 +1,59 @@
+language: php
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+  - hhvm
+
+sudo: false
+
+matrix:
+  allow_failures:
+    - php: hhvm
+  fast_finish: true
+
+before_install:
+  - composer self-update --no-interaction
+  - composer --version --no-interaction
+
+env:
+  - PREFER_LOWEST="--prefer-lowest"
+  - PREFER_LOWEST=""
+
+before_script:
+  - composer update --prefer-dist $PREFER_LOWEST
+  - composer --optimize-autoloader --no-interaction
+
+script:
+  - bin/phpunit --configuration . --coverage-clover=build/logs/clover.xml --coverage-html=build/html/coverage
+
+after_script:
+  # We upload only for reference platform! This is our base for further code analyses and so on.
+  - if [ $(phpenv version-name) == "5.4" ] && [ "$PREFER_LOWEST" == "--prefer-lowest" ]; then bin/codacycoverage clover > /dev/null 2>&1; fi
+
+after_success:
+  # Push coverage to github pages branch
+  - chmod +x ./update-gh-pages.sh
+  - if [ $(phpenv version-name) == "5.4" ] && [ "$PREFER_LOWEST" == "--prefer-lowest" ]; then bash ./update-gh-pages.sh; fi
+  # CREATE GIT TAG
+  - git config --global user.email "builds@travis-ci.org"
+  - git config --global user.name "Travis"
+  - export GIT_TAG=build-$TRAVIS_BRANCH-$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
+  - echo -n $GIT_TAG > public/version
+  - git commit -m "Set build VERSION number" public/version
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
+  - git push --tags --quiet https://$GITHUBKEY@github.com/clickalicious/webserverdaemon > /dev/null 2>&1
+
+# blacklist
+branches:
+  except:
+    - /^build-[0-9a-z\-]*/
+
+# Who to notify?
+notifications:
+  slack:
+    secure: jg72gIt0LLN0bc8QnILaYuSDpxnrsPjvX1nXzZqY9z6YFEBLPNmPZgPf3R1EDMesJDbUEAWD/s60bhBa2B9UjxT1Cr6wxHuisuiAEMjbQn9CkQHy+LDp9lyj+KzY+3ZmelLsQXbU3v9mSF1aGQqmW46GGR21NDDBkF2+9u28izOV0qE/086jKW97OQx9099OTl85BkQgV69lIG/Lq09kCL0C6ErIPe2IBsFuFDMLDHAJJzwOvfvJ2QB1snjriKI5acu76dOeGr5dZF4CTFHxnh2AZj2earzUIVTDB7aADaQa7/Goc38wim3r2kEt00Nni70wT8Ztk865fIfXFejgykYiDnlg+oIpfEyZwqpYWxX+O3hJmAz9skick/0UZ4HuvxLM94N9aex2LuSONOutf2UmaRfPj6VUqjFisBDOuVR2qrNAKuvZxVy30szLvyGNmqUvLIvZVVO/qMg1reEBAqyXK0UH3w0RsKpLzj92NtEAab4NtLUQZ6Ne7+ouJQ7v8y2/QdQg6Mf2Qth4sBgTXmNGqiZ0UJGtWJumfTH0sIneqnM5qkYl7GIkpy/PBUU5Cv1mDqk+Q4dd27vs9A7ptDXnnPSv1Nx4Z+6v5Ut8ZwgxDpgvZMNl1nQwAJD6v/i1TCNl6buny7dx1HvvX5v/GPY/8m2R+9soDg5pkWzsEwQ=
+  email:
+    recipients:
+      - opensource@clickalicious.de

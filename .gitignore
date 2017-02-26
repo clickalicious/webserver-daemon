@@ -1,0 +1,8 @@
+# Project specific
+__*/
+docs/coverage/*
+bin/*
+
+# Composer
+vendor/
+composer.lock
