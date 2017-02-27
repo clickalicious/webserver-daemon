@@ -387,7 +387,7 @@ class Demonize implements DemonizeInterface
         );
 
         if (null !== $this->pid) {
-            $commandline = sprintf('kill -9 %s  2> /dev/null',  $this->pid);
+            $commandline = sprintf('kill %s  2> /dev/null',  $this->pid);
             system($commandline, $result);
 
             if (0 !== $result) {
