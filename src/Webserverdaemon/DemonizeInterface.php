@@ -46,7 +46,7 @@ interface DemonizeInterface
      *
      * @throws \RuntimeException on any exceptional behavior
      *
-     * @return int 0 on success, otherwise -1 on error
+     * @return bool TRUE on success, otherwise FALSE
      */
     public function start($printStatus = true, $restarted = false);
 
@@ -57,7 +57,7 @@ interface DemonizeInterface
      *
      * @throws \RuntimeException on any exceptional behavior
      *
-     * @return int 0 on success, otherwise -1 on error
+     * @return bool TRUE on success, otherwise FALSE
      */
     public function stop($printStatus = true);
 
@@ -68,7 +68,7 @@ interface DemonizeInterface
      *
      * @throws \RuntimeException on any exceptional behavior
      *
-     * @return int 0 on success, otherwise -1 on error
+     * @return bool TRUE on success, otherwise FALSE
      */
     public function restart($printStatus = true);
 
@@ -79,7 +79,7 @@ interface DemonizeInterface
      *
      * @throws \RuntimeException on any exceptional behavior
      *
-     * @return string
+     * @return string Status message
      */
     public function status($printStatus = true);
 

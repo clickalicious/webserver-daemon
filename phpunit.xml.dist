@@ -16,11 +16,8 @@
         <directory>./bin</directory>
         <directory>./docs</directory>
         <directory>./vendor</directory>
-        <directory>env.php</directory>
-        <directory>start.php</directory>
-        <directory>stop.php</directory>
-        <directory>restart.php</directory>
-        <directory>status.php</directory>
+        <directory>./tests</directory>
+        <directory>./demo</directory>
       </exclude>
     </whitelist>
   </filter>

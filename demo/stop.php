@@ -27,14 +27,18 @@
  * SOFTWARE.
  */
 
-global $interface, $port, $documentRoot, $phpBinary, $tempDir, $uid;
+require_once dirname(__FILE__, 2).'/vendor/autoload.php';;
+require_once __DIR__ . '/env.php';
 
-// Get configuration optionally from environment ...
-$interface    = getenv('interface')    ? getenv('interface')    : '0.0.0.0';
-$port         = getenv('port')         ? getenv('port')         : 65432;
-$documentRoot = getenv('documentroot') ? getenv('documentroot') : __DIR__ . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'download' . DIRECTORY_SEPARATOR;
-$phpBinary    = getenv('phpbinary')    ? getenv('phpbinary')    : 'php';
-$tempDir      = getenv('tempDir')      ? getenv('tempDir')      : sys_get_temp_dir();
+// Create an instance of PHP's internal webserver
+$webserverDaemon = new \Webserverdaemon\Demonize(
+    $interface,
+    $port,
+    $documentRoot,
+    $uid,
+    $phpBinary,
+    $tempDir
+);
 
-// THIS IS THE IMPORTAN UID FOR PID
-$uid          = 'webserverdaemon';
+// Daemon control stop
+$webserverDaemon->stop();

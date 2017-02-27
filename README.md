@@ -1,13 +1,13 @@
 <img src="https://avatars2.githubusercontent.com/u/514566?v=3&u=4615dfc4970d93dea5d3eaf996b7903ee6e24e20&s=140" align="right" />
 ---
 
-![Logo of install](docs/logo-large.png)
+![Logo of webserverdaemon](docs/logo-large.png)
 
 Small utility to **demonize PHP's internal webserver**.
 
-| [![Travis branch](https://img.shields.io/travis/clickalicious/install/master.svg)](https://travis-ci.org/clickalicious/install) 	| [![Codacy branch grade](https://img.shields.io/codacy/grade/8c129b9effb64446a8d2d30eaf305679/master.svg)](https://www.codacy.com/app/clickalicious/install?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/install&utm_campaign=Badge_Grade) 	| [![Codacy coverage](https://img.shields.io/codacy/coverage/8c129b9effb64446a8d2d30eaf305679.svg)](https://www.codacy.com/app/clickalicious/install?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/install&utm_campaign=Badge_Grade) 	| [![clickalicious open source](https://img.shields.io/badge/clickalicious-open--source-green.svg?style=flat)](https://www.clickalicious.de/) 	|
+| [![Travis branch](https://img.shields.io/travis/clickalicious/webserverdaemon/master.svg)](https://travis-ci.org/clickalicious/webserverdaemon) 	| [![Codacy branch grade](https://img.shields.io/codacy/grade/8c129b9effb64446a8d2d30eaf305679/master.svg)](https://www.codacy.com/app/clickalicious/webserverdaemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserverdaemon&utm_campaign=Badge_Grade) 	| [![Codacy coverage](https://img.shields.io/codacy/coverage/8c129b9effb64446a8d2d30eaf305679.svg)](https://www.codacy.com/app/clickalicious/webserverdaemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserverdaemon&utm_campaign=Badge_Grade) 	| [![clickalicious open source](https://img.shields.io/badge/clickalicious-open--source-green.svg?style=flat)](https://www.clickalicious.de/) 	|
 |---	|---	|---	|---	|
-| [![GitHub release](https://img.shields.io/github/release/clickalicious/install.svg?style=flat)](https://github.com/clickalicious/install/releases) 	| [![](https://img.shields.io/github/issues-raw/clickalicious/install.svg)](https://github.com/clickalicious/install/issues)  	| [![Issue Stats](https://img.shields.io/issuestats/i/github/clickalicious/install.svg)](https://github.com/clickalicious/install/issues) 	| [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)  	|
+| [![GitHub release](https://img.shields.io/github/release/clickalicious/webserverdaemon.svg?style=flat)](https://github.com/clickalicious/webserverdaemon/releases) 	| [![](https://img.shields.io/github/issues-raw/clickalicious/webserverdaemon.svg)](https://github.com/clickalicious/webserverdaemon/issues)  	| [![Issue Stats](https://img.shields.io/issuestats/i/github/clickalicious/webserverdaemon.svg)](https://github.com/clickalicious/webserverdaemon/issues) 	| [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)  	|
 
 
 ## Table of Contents
@@ -38,42 +38,40 @@ Small utility to **demonize PHP's internal webserver**.
 
 ## Example
 
-Use `clickalicious\install` in `composer.json` context for downloading and installing a binary:
+Use `clickalicious\webserverdaemon` in `composer.json` context for downloading and webserverdaemoning a binary:
 ```js
 {
     "require": {
-        "clickalicious/install": "^0.1"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "Install\\ScriptHandler::installFiles"
-        ],
-        "post-update-cmd": [
-            "Install\\ScriptHandler::installFiles"
-        ]
-    },
-    "extra": {
-        "install-parameters": [{
-    	    "file-uri": "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar",
-    	    "destination-filename": "foo.phar",
-    	    "destination-directory": ".",
-    	    "temporary-filename": "78d7fgs87sdf987sd89f",
-    	    "temporary-directory": "/tmp",
-            "install": true
-        }]
+        "clickalicious/webserverdaemon": "^0.1"
     }
 }
 ```
 
-Use `clickalicious\install` in `CLI` context for downloading and installing a binary:
+Use `clickalicious\webserverdaemon` in `CLI` context for downloading and webserverdaemoning a binary:
 ```shell
 > vendor/bin/install --filename=FOO
 ```
 
+### Start
+A
+[Demo Start Daemon »](demo/start.php)
+
+### Stop
+B
+[Demo Stop Daemon »](demo/stop.php)
+
+### Restart
+C
+[Demo Restart Daemon »](demo/restart.php)
+
+### Status
+D
+[Demo Status Daemon »](demo/status.php)
+
 
 ## Requirements
 
- - `PHP >= 5.6` (compatible up to version 5.6 as well as 7.1 and HHVM)
+ - `PHP >= 5.6` (compatible up to version 5.6 as well as 7.2 and HHVM)
 
 
 ## Philosophy
@@ -91,7 +89,7 @@ For a consistent versioning i decided to make use of `Semantic Versioning 2.0.0`
 - [ ] Target stable release `1.0.0`
 - [ ] `>= 90%` test coverage
 
-[![Throughput Graph](https://graphs.waffle.io/clickalicious/install/throughput.svg)](https://waffle.io/clickalicious/install/metrics)
+[![Throughput Graph](https://graphs.waffle.io/clickalicious/webserverdaemon/throughput.svg)](https://waffle.io/clickalicious/webserverdaemon/metrics)
 
 
 ## Security Issues

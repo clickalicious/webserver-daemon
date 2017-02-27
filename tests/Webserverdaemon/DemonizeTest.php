@@ -57,6 +57,13 @@ class DemonizeTest extends TestCase
     protected $port;
 
     /**
+     * Contains list of processed UIDs to be cleaned up in case of error while testing.
+     *
+     * @var array
+     */
+    protected static $listOfUids = [];
+
+    /**
      * Lowest possible port for randomizer.
      *
      * @var int
@@ -92,6 +99,35 @@ class DemonizeTest extends TestCase
 
         $this->uid  = sha1($randomizer->getRandomBytes(64));
         $this->port = $randomizer->generate(self::PORT_MIN, self::PORT_MAX);
+
+        self::$listOfUids[] = $this->uid;
+    }
+
+    /**
+     * Tidy-up after unit tests.
+     *
+     * @author Benjamin Carl <opensource@clickalicious.de>
+     *
+     * @codeCoverageIgnore
+     */
+    public static function tearDownAfterClass()
+    {
+        parent::tearDownAfterClass();
+
+        foreach (self::$listOfUids as $uid) {
+            $logFile = sprintf('%s%s%s%s', sys_get_temp_dir(), DIRECTORY_SEPARATOR, $uid, Demonize::LOG_FILE_SUFFIX);
+            $pidFile = sprintf('%s%s%s%s', sys_get_temp_dir(), DIRECTORY_SEPARATOR, $uid, Demonize::PID_FILE_SUFFIX);
+
+            // Check if exists and if is file ...
+            if (true === file_exists($logFile) && true === is_file($logFile)) {
+                unlink($logFile);
+            }
+
+            // Check if exists and if is file ...
+            if (true === file_exists($pidFile) && true === is_file($pidFile)) {
+                unlink($pidFile);
+            }
+        }
     }
 
     /**
@@ -129,7 +165,7 @@ class DemonizeTest extends TestCase
     }
 
     /**
-     * testRunDaemonWithCustomValidArgument.
+     * Test: Start, Status, Restart, Stop Daemon with valid Arguments.
      *
      * @param array $arguments Arguments for creating instance.
      *
@@ -138,7 +174,7 @@ class DemonizeTest extends TestCase
      * @author Benjamin Carl <opensource@clickalicious.de>
      *
      */
-    public function testRunDaemonWithCustomValidArgument(array $arguments)
+    public function testStartStatusRestartStopDaemonWithCustomValidArgument(array $arguments)
     {
         // Enrich with mock data
         $arguments = $this->injectRandomizedMockData($arguments);
@@ -150,7 +186,50 @@ class DemonizeTest extends TestCase
         $result = $instance->start(self::PRINT_RESULT);
         self::assertTrue($result);
 
+        $result = $instance->status(self::PRINT_RESULT);
+        self::assertTrue($result);
+
+        $result = $instance->restart(self::PRINT_RESULT);
+        self::assertTrue($result);
+
         $result = $instance->stop(self::PRINT_RESULT);
+        self::assertTrue($result);
+    }
+
+    /**
+     * Test: Start, Status, Restart, Stop Daemon with valid Arguments in seperated instances.
+     *
+     * @param array $arguments Arguments for creating instance.
+     *
+     * @dataProvider provideValidArguments
+     *
+     * @author Benjamin Carl <opensource@clickalicious.de>
+     *
+     */
+    public function testStartStatusRestartStopDaemonWithCustomValidArgumentInSeparatedInstances(array $arguments)
+    {
+        // Enrich with mock data
+        $arguments = $this->injectRandomizedMockData($arguments);
+
+        $reflection = new \ReflectionClass('\\Webserverdaemon\\Demonize');
+        /* @var $instance Demonize*/
+        $instance = $reflection->newInstanceArgs($arguments);
+        $result   = $instance->start(self::PRINT_RESULT);
+        self::assertTrue($result);
+
+        /* @var $instance Demonize*/
+        $instance = $reflection->newInstanceArgs($arguments);
+        $result   = $instance->status(self::PRINT_RESULT);
+        self::assertTrue($result);
+
+        /* @var $instance Demonize*/
+        $instance = $reflection->newInstanceArgs($arguments);
+        $result   = $instance->restart(self::PRINT_RESULT);
+        self::assertTrue($result);
+
+        /* @var $instance Demonize*/
+        $instance = $reflection->newInstanceArgs($arguments);
+        $result   = $instance->stop(self::PRINT_RESULT);
         self::assertTrue($result);
     }
 

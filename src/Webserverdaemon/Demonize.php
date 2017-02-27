@@ -41,6 +41,8 @@ use Assert\Assertion;
 class Demonize implements DemonizeInterface
 {
     /**
+     * Directory separator.
+     *
      * @var string
      */
     protected $separator = DIRECTORY_SEPARATOR;
@@ -123,6 +125,20 @@ class Demonize implements DemonizeInterface
     protected $pipes = [];
 
     /**
+     * Suffix for Log-file.
+     *
+     * @var string
+     */
+    const LOG_FILE_SUFFIX = '.log';
+
+    /**
+     * Suffix for PID-file.
+     *
+     * @var string
+     */
+    const PID_FILE_SUFFIX = '.pid';
+
+    /**
      * Demonize constructor.
      *
      * @param string $interface    Interface to make daemon listen on.
@@ -174,8 +190,8 @@ class Demonize implements DemonizeInterface
         $this->uid          = $uid;
         $this->phpBinary    = $phpBinary;
         $this->tempDir      = $tempDir;
-        $this->logFile      = sprintf('%s%s%s.log', $this->tempDir, $this->separator, $this->uid);
-        $this->pidFile      = sprintf('%s%s%s.pid', $this->tempDir, $this->separator, $this->uid);
+        $this->logFile      = sprintf('%s%s%s%s', $this->tempDir, $this->separator, $this->uid, self::LOG_FILE_SUFFIX);
+        $this->pidFile      = sprintf('%s%s%s%s', $this->tempDir, $this->separator, $this->uid, self::PID_FILE_SUFFIX);
 
         $this->commandline = sprintf(
             $commandline,
@@ -423,11 +439,13 @@ class Demonize implements DemonizeInterface
             $log       = $exception->getMessage();
         }
 
-        $this->start($printStatus, $restarted);
+        $result = $this->start($printStatus, $restarted);
 
         if (null !== $log) {
             file_put_contents($this->logFile, $log, FILE_APPEND);
         }
+
+        return $result;
     }
 
     /**

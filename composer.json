@@ -32,7 +32,9 @@
     "psr-4": {
       "Webserverdaemon\\": "tests/Webserverdaemon/"
     },
-    "files": ["env.php"]
+    "files": [
+      "demo/env.php"
+    ]
   },
   "keywords": [
     "composer",
