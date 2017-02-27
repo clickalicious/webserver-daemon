@@ -93,7 +93,7 @@ class DemonizeTest extends TestCase
     protected function setUp()
     {
         $randomizer = new Generator(
-            Generator::MODE_PHP_MERSENNE_TWISTER,
+            Generator::MODE_OPEN_SSL,
             (int)str_replace('.', '', microtime(true))
         );
 
@@ -193,43 +193,6 @@ class DemonizeTest extends TestCase
         self::assertTrue($result);
 
         $result = $instance->stop(self::PRINT_RESULT);
-        self::assertTrue($result);
-    }
-
-    /**
-     * Test: Start, Status, Restart, Stop Daemon with valid Arguments in seperated instances.
-     *
-     * @param array $arguments Arguments for creating instance.
-     *
-     * @dataProvider provideValidArguments
-     *
-     * @author Benjamin Carl <opensource@clickalicious.de>
-     *
-     */
-    public function testStartStatusRestartStopDaemonWithCustomValidArgumentInSeparatedInstances(array $arguments)
-    {
-        // Enrich with mock data
-        $arguments = $this->injectRandomizedMockData($arguments);
-
-        $reflection = new \ReflectionClass('\\Webserverdaemon\\Demonize');
-        /* @var $instance Demonize*/
-        $instance = $reflection->newInstanceArgs($arguments);
-        $result   = $instance->start(self::PRINT_RESULT);
-        self::assertTrue($result);
-
-        /* @var $instance Demonize*/
-        $instance = $reflection->newInstanceArgs($arguments);
-        $result   = $instance->status(self::PRINT_RESULT);
-        self::assertTrue($result);
-
-        /* @var $instance Demonize*/
-        $instance = $reflection->newInstanceArgs($arguments);
-        $result   = $instance->restart(self::PRINT_RESULT);
-        self::assertTrue($result);
-
-        /* @var $instance Demonize*/
-        $instance = $reflection->newInstanceArgs($arguments);
-        $result   = $instance->stop(self::PRINT_RESULT);
         self::assertTrue($result);
     }
 
