@@ -189,8 +189,8 @@ class DemonizeTest extends TestCase
         $result = $instance->status(self::PRINT_RESULT);
         self::assertTrue($result);
 
-        $result = $instance->restart(self::PRINT_RESULT);
-        self::assertTrue($result);
+        #$result = $instance->restart(self::PRINT_RESULT);
+        #self::assertTrue($result);
 
         $result = $instance->stop(self::PRINT_RESULT);
         self::assertTrue($result);
