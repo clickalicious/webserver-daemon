@@ -29,10 +29,12 @@
 
 global $interface, $port, $documentRoot, $phpBinary, $tempDir, $uid;
 
+$dirUp = realpath(__DIR__ . '/../..');
+
 // Get configuration optionally from environment ...
 $interface    = getenv('interface')    ? getenv('interface')    : '0.0.0.0';
 $port         = getenv('port')         ? getenv('port')         : 65432;
-$documentRoot = getenv('documentroot') ? getenv('documentroot') : dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'download' . DIRECTORY_SEPARATOR;
+$documentRoot = getenv('documentroot') ? getenv('documentroot') : $dirUp . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'download' . DIRECTORY_SEPARATOR;
 $phpBinary    = getenv('phpbinary')    ? getenv('phpbinary')    : 'php';
 $tempDir      = getenv('tempDir')      ? getenv('tempDir')      : sys_get_temp_dir();
 
