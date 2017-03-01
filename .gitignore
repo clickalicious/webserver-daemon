@@ -2,6 +2,7 @@
 __*/
 docs/coverage/*
 bin/*
+build/*
 
 # Composer
 vendor/
