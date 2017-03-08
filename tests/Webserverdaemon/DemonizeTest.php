@@ -189,11 +189,51 @@ class DemonizeTest extends TestCase
         $result = $instance->status(self::PRINT_RESULT);
         self::assertTrue($result);
 
+        $result = $instance->start(self::PRINT_RESULT);
+        self::assertFalse($result);
+
         $result = $instance->restart(self::PRINT_RESULT);
         self::assertTrue($result);
 
         $result = $instance->stop(self::PRINT_RESULT);
         self::assertTrue($result);
+
+        #$result = $instance->stop(self::PRINT_RESULT);
+        #self::assertFalse($result);
+    }
+
+    /**
+     * Test: Start, Status, Restart, Stop Daemon with valid Arguments.
+     *
+     * @param array $arguments Arguments for creating instance.
+     *
+     * @dataProvider provideValidArguments
+     *
+     * @author Benjamin Carl <opensource@clickalicious.de>
+     *
+     */
+    public function testStartStatusRestartStopDaemonWithCustomInvalidArgument(array $arguments)
+    {
+        // Enrich with mock data
+        $arguments = $this->injectRandomizedMockData($arguments);
+
+        $reflection = new \ReflectionClass('\\Webserverdaemon\\Demonize');
+        /* @var $instance Demonize*/
+        $instance   = $reflection->newInstanceArgs($arguments);
+
+        /*
+        $result = $instance->start(self::PRINT_RESULT);
+        self::assertFalse($result);
+
+        $result = $instance->status(self::PRINT_RESULT);
+        self::assertTrue($result);
+
+        $result = $instance->restart(self::PRINT_RESULT);
+        self::assertTrue($result);
+
+        $result = $instance->stop(self::PRINT_RESULT);
+        self::assertTrue($result);
+        */
     }
 
     /**
