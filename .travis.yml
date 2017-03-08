@@ -34,6 +34,7 @@ script:
 
 after_script:
   # We upload only for reference platform! This is our base for further code analyses and so on.
+  - export CODACY_PROJECT_TOKEN=2d30fa6ece3f4aedbef0e3fbe502b586 > /dev/null 2>&1
   - if [ $(phpenv version-name) == "5.6" ] && [ "$PREFER_LOWEST" == "--prefer-lowest" ]; then bin/codacycoverage clover build/logs/clover.xml -vvv; fi
 
 after_success:
