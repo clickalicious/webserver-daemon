@@ -26,7 +26,7 @@ before_script:
   - composer --optimize-autoloader --no-interaction
 
 script:
-  - bin/phpunit --configuration . --coverage-clover=build/logs/clover.xml --coverage-html=build/html/coverage --testdox
+  - bin/phpunit --configuration . --coverage-clover=build/logs/clover.xml --coverage-html=build/html/coverage
 
 after_script:
   # We upload only for reference platform! This is our base for further code analyses and so on.
