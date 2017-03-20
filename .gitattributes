@@ -25,4 +25,3 @@
 *.dll                   binary
 *.exe                   binary
 *.zip                   binary
-*             eol=lf    text=auto
