@@ -197,9 +197,6 @@ class DemonizeTest extends TestCase
 
         $result = $instance->stop(self::PRINT_RESULT);
         self::assertTrue($result);
-
-        #$result = $instance->stop(self::PRINT_RESULT);
-        #self::assertFalse($result);
     }
 
     /**
@@ -207,33 +204,31 @@ class DemonizeTest extends TestCase
      *
      * @param array $arguments Arguments for creating instance.
      *
-     * @dataProvider provideValidArguments
+     * @dataProvider provideInvalidArguments
      *
      * @author Benjamin Carl <opensource@clickalicious.de>
      *
+     * @expectedException \InvalidArgumentException
      */
     public function testStartStatusRestartStopDaemonWithCustomInvalidArgument(array $arguments)
     {
-        // Enrich with mock data
-        $arguments = $this->injectRandomizedMockData($arguments);
-
         $reflection = new \ReflectionClass('\\Webserverdaemon\\Demonize');
         /* @var $instance Demonize*/
         $instance   = $reflection->newInstanceArgs($arguments);
 
-        /*
         $result = $instance->start(self::PRINT_RESULT);
         self::assertFalse($result);
 
-        $result = $instance->status(self::PRINT_RESULT);
-        self::assertTrue($result);
+        /*
+$result = $instance->status(self::PRINT_RESULT);
+self::assertTrue($result);
 
-        $result = $instance->restart(self::PRINT_RESULT);
-        self::assertTrue($result);
+$result = $instance->restart(self::PRINT_RESULT);
+self::assertTrue($result);
 
-        $result = $instance->stop(self::PRINT_RESULT);
-        self::assertTrue($result);
-        */
+$result = $instance->stop(self::PRINT_RESULT);
+self::assertTrue($result);
+*/
     }
 
     /**
@@ -344,6 +339,67 @@ class DemonizeTest extends TestCase
                     PHP_BINARY,
                     sys_get_temp_dir(),
                     '%s -S %s:%s -t %s > %s 2>&1 & echo $!',
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * Data provider for invalid test data.
+     *
+     * @author Benjamin Carl <opensource@clickalicious.de>
+     *
+     * @return array Valid test data.
+     *
+     * @codeCoverageIgnore
+     */
+    public function provideInvalidArguments()
+    {
+
+        return [
+            'interface' => [
+                [
+                    1,
+                ]
+            ],
+            'interface, port' => [
+                [
+                    '127.0.0.1',
+                    'three'
+                ]
+            ],
+            'interface, port, documentRoot' => [
+                [
+                    '127.0.0.1',
+                    9999,
+                    'invaliddirectory',
+                ]
+            ],
+            'interface, port, documentRoot, uid' => [
+                [
+                    '127.0.0.1',
+                    9999,
+                    sys_get_temp_dir(),
+                    null,
+                ]
+            ],
+            'interface, port, documentRoot, uid, phpBinary' => [
+                [
+                    '127.0.0.1',
+                    9999,
+                    sys_get_temp_dir(),
+                    'foobar',
+                    'nophp',
+                ]
+            ],
+            'interface, port, documentRoot, uid, phpBinary, tempDir' => [
+                [
+                    '127.0.0.1',
+                    9999,
+                    sys_get_temp_dir(),
+                    'foobar',
+                    PHP_BINARY,
+                    'invaliddirectory',
                 ]
             ],
         ];
