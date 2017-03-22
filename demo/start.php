@@ -27,7 +27,7 @@
  * SOFTWARE.
  */
 
-require_once dirname(__FILE__, 2).'/vendor/autoload.php';;
+require_once dirname(__FILE__, 2).'/vendor/autoload.php';
 require_once __DIR__ . '/env.php';
 
 // Create an instance of PHP's internal webserver
@@ -41,4 +41,4 @@ $webserverDaemon = new \Webserverdaemon\Demonize(
 );
 
 // Daemon control start
-$webserverDaemon->start();
+sprintf('%s%s', $webserverDaemon->start(), PHP_EOL);
