@@ -29,13 +29,13 @@
 
 global $interface, $port, $documentRoot, $phpBinary, $tempDir, $uid;
 
-$dirUp = realpath(__DIR__ . '/../..');
+$dirUp = realpath(__DIR__ . '/..');
 
 // Get configuration optionally from environment ...
 $interface    = getenv('interface')    ? getenv('interface')    : '0.0.0.0';
 $port         = getenv('port')         ? getenv('port')         : 65432;
 $documentRoot = getenv('documentroot') ? getenv('documentroot') : $dirUp . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'download' . DIRECTORY_SEPARATOR;
-$phpBinary    = getenv('phpbinary')    ? getenv('phpbinary')    : 'php';
+$phpBinary    = getenv('phpbinary')    ? getenv('phpbinary')    : PHP_BINARY;
 $tempDir      = getenv('tempDir')      ? getenv('tempDir')      : sys_get_temp_dir();
 
 // THIS IS THE IMPORTAN UID FOR PID

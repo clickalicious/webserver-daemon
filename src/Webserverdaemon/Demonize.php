@@ -29,8 +29,6 @@
 
 namespace Webserverdaemon;
 
-use Assert\Assert;
-use Webserverdaemon\Filter\LoggableFilter;
 use Assert\Assertion;
 
 /**
@@ -155,7 +153,7 @@ class Demonize implements DemonizeInterface
      *
      */
     public function __construct(
-        $interface = '0.0.0.0',
+        $interface = '127.0.0.1',
         $port = 8000,
         $documentRoot = '.',
         $uid = 'webserver',
@@ -341,12 +339,7 @@ class Demonize implements DemonizeInterface
 
             // Check for successful creation of process
             if (true === is_resource($processHandle)) {
-                stream_filter_register('LoggableFilter', LoggableFilter::class);
-
-                stream_filter_append($this->pipes[1], 'LoggableFilter', STREAM_FILTER_ALL, ['logfile' => $this->logFile]);
-
                 $this->pid = trim(stream_get_contents($this->pipes[1]));
-
                 file_put_contents($this->pidFile, $this->pid);
             }
 
@@ -387,7 +380,7 @@ class Demonize implements DemonizeInterface
         );
 
         if (null !== $this->pid) {
-            $commandline = sprintf('kill %s &> /dev/null',  $this->pid);
+            $commandline = sprintf('kill %s &> /dev/null', $this->pid);
             system($commandline, $result);
 
             if (0 !== $result) {
@@ -491,10 +484,10 @@ class Demonize implements DemonizeInterface
                     $status     = true;
                     $statusText = sprintf(
                         'Webserverdaemon (UID: %s) process (PID: %s) running ...%s%s',
-                            $this->uid,
-                            $this->pid,
-                            PHP_EOL,
-                            $responseLine
+                        $this->uid,
+                        $this->pid,
+                        PHP_EOL,
+                        $responseLine
                     );
                 }
             }
