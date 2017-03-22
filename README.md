@@ -29,54 +29,89 @@ Small utility to **demonize PHP's internal webserver**.
  - Control webserver with well known `start`, `stop`, `restart` & `status` command
  - Simple PID- and Logfile abstraction
  - Multi process support
- - High-quality & stable codebase (following PSR standards e.g. `PSR-1,4`)
+ - High-quality & stable codebase (following PSR standards e.g. `PSR-1,2,4`)
  - Built on top of good PHP libraries
- - PHP 7.2 & HHVM ready
+ - PHP >= 7.2 ready
  - Clean + well documented code
  - Unit-tested with a good coverage
 
 
 ## Example
 
-Use `clickalicious\webserverdaemon` in `composer.json` context for downloading and webserverdaemoning a binary:
-```js
-{
-    "require": {
-        "clickalicious/webserverdaemon": "^0.1"
-    }
-}
+We provided some examples in the directory "[demo](demo/)" on How-To use the library and wrapper around PHP's internal webserver: 
+
+### PHP
+An example on how to use the library in PHP context:
+```php
+<?php
+ 
+// Create an instance of PHP's internal webserver
+$webserverDaemon = new \Webserverdaemon\Demonize(
+    $interface,
+    $port,
+    $documentRoot,
+    $uid,
+    $phpBinary,
+    $tempDir
+);
+
+// Daemon control
+$webserverDaemon->start();
+$webserverDaemon->restart();
+$webserverDaemon->stop();
+
+// Get PID
+$webserverDaemon->start();
+$webserverDaemon->getPid();
+
 ```
 
-Use `clickalicious\webserverdaemon` in `CLI` context for downloading and webserverdaemoning a binary:
-```shell
-> vendor/bin/install --filename=FOO
-```
 
 ### Start
-A
-[Demo Start Daemon »](demo/start.php)
+The following simple example shows how the daemon can be `started`:
+[Demo START daemon »](demo/start.php)
+
+Use this command for execution of the demo:
+```shell
+$> php demo/start.php
+```
 
 ### Stop
-B
-[Demo Stop Daemon »](demo/stop.php)
+The following simple example shows how the daemon can be `stopped`:
+[Demo STOP daemon »](demo/stop.php)
+
+Use this command for execution of the demo:
+```shell
+$> php demo/stop.php
+```
 
 ### Restart
-C
-[Demo Restart Daemon »](demo/restart.php)
+The following simple example shows how the daemon can be `restarted`:
+[Demo RESTART daemon »](demo/restart.php)
+
+Use this command for execution of the demo:
+```shell
+$> php demo/restart.php
+```
 
 ### Status
-D
-[Demo Status Daemon »](demo/status.php)
+The following simple example shows how the `status` of the daemon can be queried:
+[Demo STATUS daemon »](demo/status.php)
+
+Use this command for execution of the demo:
+```shell
+$> php demo/status.php
+```
 
 
 ## Requirements
 
- - `PHP >= 5.6` (compatible up to version 5.6 as well as 7.2 and HHVM)
+ - `PHP >= 5.6` (compatible up to version 5.6 as well as >= 7.2)
 
 
 ## Philosophy
 
-This library provides a state of the art `PRNG` (**P**seudo **R**andom **N**umber **G**enerator) implementation to generate secure `Pseudo Random Numbers` with PHP. The generation is either based on `Open SSL` or `MCrypt` or as fallback on PHP's internal functionality. The library also provides a very good `Seed generator` on puplic API. If you are interested in the difference between real and pseduo randomness then you could start at [https://www.random.org/randomness/](https://www.random.org/randomness/ "https://www.random.org/randomness/").
+This library provides the functionality to daemonize PHP's internal webserver and send the process to background without blocking the `console` or process starting the internal webserver. It uses PHP's pipes to register an I/O stream filter and fetches  
 
 
 ## Versioning
@@ -100,7 +135,7 @@ If you encounter a (potential) security issue don't hesitate to get in contact w
 ## Participate & Share
 
 ... yeah. If you're a code monkey too - maybe we can build a force ;) If you would like to participate in either **Code**, **Comments**, **Documentation**, **Wiki**, **Bug-Reports**, **Unit-Tests**, **Bug-Fixes**, **Feedback** and/or **Critic** then please let me know as well!
-<a href="https://twitter.com/intent/tweet?hashtags=&original_referer=http%3A%2F%2Fgithub.com%2F&text=Rng%20-%20Random%20number%20generator%20for%20PHP%20%40phpfluesterer%20%23Rng%20%23php%20https%3A%2F%2Fgithub.com%2Fclickalicious%2FRng&tw_p=tweetbutton" target="_blank">
+<a href="https://twitter.com/intent/tweet?hashtags=&original_referer=http%3A%2F%2Fgithub.com%2F&text=webserverdaemon%20-%20Small%20utility%20to%20demonize%20PHP%27s%20internal%20webserver%20%40phpfluesterer%20%23webserverdaemon%20%23php%20https%3A%2F%2Fgithub.com%2Fclickalicious%2Fwebserverdaemon&tw_p=tweetbutton" target="_blank">
   <img src="http://jpillora.com/github-twitter-button/img/tweet.png"></img>
 </a>
 
