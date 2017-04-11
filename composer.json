@@ -1,5 +1,5 @@
 {
-  "name": "clickalicious/webserverdaemon",
+  "name": "clickalicious/webserver-daemon",
   "description": "Small utility to demonize PHP's internal webserver.",
   "type": "library",
   "authors": [
@@ -25,12 +25,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Webserverdaemon\\": "src/Webserverdaemon/"
+      "Webserver\\": "src/Webserver/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Webserverdaemon\\": "tests/Webserverdaemon/"
+      "Webserver\\": "tests/Webserver/"
     },
     "files": [
       "demo/env.php"
@@ -39,20 +39,20 @@
   "keywords": [
     "composer",
     "php",
-    "webserverdaemon",
+    "webserver-daemon",
     "webserver",
     "daemon",
     "demon",
     "demonize",
     "unittest"
   ],
-  "homepage": "https://clickalicious.github.io/webserverdaemon",
+  "homepage": "https://clickalicious.github.io/webserver-daemon",
   "license": "MIT",
   "support": {
     "email": "opensource@clickalicious.de",
-    "issues": "https://github.com/clickalicious/webserverdaemon/issues",
-    "wiki": "https://github.com/clickalicious/webserverdaemon/wiki",
-    "tests": "https://clickalicious.github.io/webserverdaemon"
+    "issues": "https://github.com/clickalicious/webserver-daemon/issues",
+    "wiki": "https://github.com/clickalicious/webserver-daemon/wiki",
+    "tests": "https://clickalicious.github.io/webserver-daemon"
   },
   "config": {
     "bin-dir": "bin",

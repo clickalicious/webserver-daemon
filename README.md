@@ -1,13 +1,13 @@
-<img src="https://avatars2.githubusercontent.com/u/514566?v=3&u=4615dfc4970d93dea5d3eaf996b7903ee6e24e20&s=140" align="right" />
+<img src="https://avatars0.githubusercontent.com/u/26927954?v=3&s=80" align="right" />
 ---
 
-![Logo of webserverdaemon](docs/logo-large.png)
+![Logo of webserver-daemon](docs/logo-large.png)
 
 Small utility to **demonize PHP's internal webserver**.
 
-| [![Travis branch](https://img.shields.io/travis/clickalicious/webserverdaemon/master.svg)](https://travis-ci.org/clickalicious/webserverdaemon) 	| [![Codacy branch grade](https://img.shields.io/codacy/grade/8c129b9effb64446a8d2d30eaf305679/master.svg)](https://www.codacy.com/app/clickalicious/webserverdaemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserverdaemon&utm_campaign=Badge_Grade) 	| [![Codacy coverage](https://img.shields.io/codacy/coverage/c73c519d18dd4d6ca703271b4d5faccf.svg)](https://www.codacy.com/app/clickalicious/webserverdaemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserverdaemon&utm_campaign=Badge_Grade) 	| [![clickalicious open source](https://img.shields.io/badge/clickalicious-open--source-green.svg?style=flat)](https://www.clickalicious.de/) 	|
+| [![Build Status](https://travis-ci.org/clickalicious/webserver-daemon.svg?branch=master)](https://travis-ci.org/clickalicious/webserver-daemon) 	| [![Codacy branch grade](https://img.shields.io/codacy/grade/8c129b9effb64446a8d2d30eaf305679/master.svg)](https://www.codacy.com/app/clickalicious/webserver-daemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserver-daemon&utm_campaign=Badge_Grade) 	| [![Codacy coverage](https://img.shields.io/codacy/coverage/c73c519d18dd4d6ca703271b4d5faccf.svg)](https://www.codacy.com/app/clickalicious/webserver-daemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserver-daemon&utm_campaign=Badge_Grade) 	| [![clickalicious open source](https://img.shields.io/badge/clickalicious-open--source-green.svg?style=flat)](https://clickalicious.de/) 	|
 |---	|---	|---	|---	|
-| [![GitHub release](https://img.shields.io/github/release/clickalicious/webserverdaemon.svg?style=flat)](https://github.com/clickalicious/webserverdaemon/releases) 	| [![Waffle.io](https://img.shields.io/waffle/label/clickalicious/webserverdaemon/in%20progress.svg)](https://waffle.io/clickalicious/webserverdaemon)  	| [![Issue Stats](https://img.shields.io/issuestats/i/github/clickalicious/webserverdaemon.svg)](https://github.com/clickalicious/webserverdaemon/issues) 	| [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)  	|
+| [![GitHub release](https://img.shields.io/github/release/clickalicious/webserver-daemon.svg?style=flat)](https://github.com/clickalicious/webserver-daemon/releases) 	| [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)  	| [![Issue Stats](https://img.shields.io/issuestats/i/github/clickalicious/webserver-daemon.svg)](https://github.com/clickalicious/webserver-daemon/issues) 	| [![Dependency Status](https://dependencyci.com/github/clickalicious/webserver-daemon/badge)](https://dependencyci.com/github/clickalicious/webserver-daemon)  	|
 
 
 ## Table of Contents
@@ -46,7 +46,7 @@ An example on how to use the library in PHP context:
 <?php
  
 // Create an instance of PHP's internal webserver
-$webserverDaemon = new \Webserverdaemon\Demonize(
+$webserverDaemon = new \Webserver\Daemon\Demonize(
     $interface,
     $port,
     $documentRoot,
@@ -124,7 +124,7 @@ For a consistent versioning i decided to make use of `Semantic Versioning 2.0.0`
 - [ ] Target stable release `1.0.0`
 - [ ] `>= 90%` test coverage
 
-[![Throughput Graph](https://graphs.waffle.io/clickalicious/webserverdaemon/throughput.svg)](https://waffle.io/clickalicious/webserverdaemon/metrics)
+[![Throughput Graph](https://graphs.waffle.io/clickalicious/webserver-daemon/throughput.svg)](https://waffle.io/clickalicious/webserver-daemon/metrics)
 
 
 ## Security Issues
@@ -135,7 +135,7 @@ If you encounter a (potential) security issue don't hesitate to get in contact w
 ## Participate & Share
 
 ... yeah. If you're a code monkey too - maybe we can build a force ;) If you would like to participate in either **Code**, **Comments**, **Documentation**, **Wiki**, **Bug-Reports**, **Unit-Tests**, **Bug-Fixes**, **Feedback** and/or **Critic** then please let me know as well!
-<a href="https://twitter.com/intent/tweet?hashtags=&original_referer=http%3A%2F%2Fgithub.com%2F&text=webserverdaemon%20-%20Small%20utility%20to%20demonize%20PHP%27s%20internal%20webserver%20%40phpfluesterer%20%23webserverdaemon%20%23php%20https%3A%2F%2Fgithub.com%2Fclickalicious%2Fwebserverdaemon&tw_p=tweetbutton" target="_blank">
+<a href="https://twitter.com/intent/tweet?hashtags=&original_referer=http%3A%2F%2Fgithub.com%2F&text=webserver-daemon%20-%20Small%20utility%20to%20demonize%20PHP%27s%20internal%20webserver%20%40phpfluesterer%20%23webserver-daemon%20%23php%20https%3A%2F%2Fgithub.com%2Fclickalicious%2Fwebserver-daemon&tw_p=tweetbutton" target="_blank">
   <img src="http://jpillora.com/github-twitter-button/img/tweet.png"></img>
 </a>
 
