@@ -1,4 +1,5 @@
 <img src="https://avatars0.githubusercontent.com/u/26927954?v=3&s=80" align="right" />
+
 ---
 
 ![Logo of webserver-daemon](docs/logo-large.png)
