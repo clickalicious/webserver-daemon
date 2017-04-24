@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 
 /**
@@ -30,7 +29,7 @@ require_once dirname(__FILE__, 2).'/vendor/autoload.php';
 require_once __DIR__ . '/env.php';
 
 // Create an instance of PHP's internal webserver
-$webserverDaemon = new \Webserver\Demonize(
+$webserverDaemon = new \Clickalicious\Webserver\Daemon\Demonize(
     $interface,
     $port,
     $documentRoot,

@@ -10,7 +10,7 @@
       "role": "Lead"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "prefer-stable": true,
   "require": {
     "php": ">=5.6.0",
@@ -25,26 +25,27 @@
   },
   "autoload": {
     "psr-4": {
-      "Webserver\\": "src/Webserver/"
+      "Clickalicious\\Webserver\\Daemon\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Webserver\\": "tests/Webserver/"
+      "Clickalicious\\Webserver\\Daemon\\": "tests/"
     },
     "files": [
       "demo/env.php"
     ]
   },
   "keywords": [
-    "composer",
-    "php",
     "webserver-daemon",
     "webserver",
+    "php",
     "daemon",
     "demon",
     "demonize",
-    "unittest"
+    "unittest",
+    "control",
+    "init"
   ],
   "homepage": "https://clickalicious.github.io/webserver-daemon",
   "license": "MIT",
@@ -56,6 +57,6 @@
   },
   "config": {
     "bin-dir": "bin",
-    "preferred-install": "source"
+    "preferred-install": "dist"
   }
 }

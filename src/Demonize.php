@@ -25,7 +25,7 @@
  * SOFTWARE.
  */
 
-namespace Webserver\Daemon;
+namespace Clickalicious\Webserver\Daemon;
 
 use Assert\Assertion;
 

@@ -25,7 +25,7 @@
  * SOFTWARE.
  */
 
-namespace Webserver\Daemon;
+namespace Clickalicious\Webserver\Daemon;
 
 use Rng\Generator;
 use PHPUnit\Framework\TestCase;
@@ -135,7 +135,7 @@ class DemonizeTest extends TestCase
     public function testCreatingInstanceWithDefaults()
     {
         $instance = new Demonize();
-        self::assertInstanceOf('\\Webserver\\Daemon\\Demonize', $instance);
+        self::assertInstanceOf('\\Clickalicious\\Webserver\\Daemon\\Demonize', $instance);
     }
 
     /**
@@ -153,11 +153,11 @@ class DemonizeTest extends TestCase
         // Enrich with mock data
         $arguments = $this->injectRandomizedMockData($arguments);
 
-        $reflection = new \ReflectionClass('\\Webserver\\Daemon\\Demonize');
+        $reflection = new \ReflectionClass('\\Clickalicious\\Webserver\\Daemon\\Demonize');
         /* @var $instance Demonize*/
         $instance   = $reflection->newInstanceArgs($arguments);
 
-        self::assertInstanceOf('\\Webserver\\Daemon\\Demonize', $instance);
+        self::assertInstanceOf('\\Clickalicious\\Webserver\\Daemon\\Demonize', $instance);
     }
 
     /**
@@ -175,7 +175,7 @@ class DemonizeTest extends TestCase
         // Enrich with mock data
         $arguments = $this->injectRandomizedMockData($arguments);
 
-        $reflection = new \ReflectionClass('\\Webserver\\Daemon\\Demonize');
+        $reflection = new \ReflectionClass('\\Clickalicious\\Webserver\\Daemon\\Demonize');
         /* @var $instance Demonize*/
         $instance   = $reflection->newInstanceArgs($arguments);
 
@@ -208,7 +208,7 @@ class DemonizeTest extends TestCase
      */
     public function testStartStatusRestartStopDaemonWithCustomInvalidArgument(array $arguments)
     {
-        $reflection = new \ReflectionClass('\\Webserver\\Daemon\\Demonize');
+        $reflection = new \ReflectionClass('\\Clickalicious\\Webserver\\Daemon\\Demonize');
         /* @var $instance Demonize*/
         $instance   = $reflection->newInstanceArgs($arguments);
 
@@ -216,15 +216,15 @@ class DemonizeTest extends TestCase
         self::assertFalse($result);
 
         /*
-$result = $instance->status(self::PRINT_RESULT);
-self::assertTrue($result);
+            $result = $instance->status(self::PRINT_RESULT);
+            self::assertTrue($result);
 
-$result = $instance->restart(self::PRINT_RESULT);
-self::assertTrue($result);
+            $result = $instance->restart(self::PRINT_RESULT);
+            self::assertTrue($result);
 
-$result = $instance->stop(self::PRINT_RESULT);
-self::assertTrue($result);
-*/
+            $result = $instance->stop(self::PRINT_RESULT);
+            self::assertTrue($result);
+        */
     }
 
     /**

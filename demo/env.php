@@ -26,7 +26,7 @@
  */
 global $interface, $port, $documentRoot, $phpBinary, $tempDir, $uid;
 
-$dirUp = realpath(__DIR__ . '/..');
+$dirUp = dirname(__DIR__);
 
 // Get configuration optionally from environment ...
 $interface    = getenv('interface')    ? getenv('interface')    : '0.0.0.0';
