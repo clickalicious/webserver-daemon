@@ -6,7 +6,7 @@
 
 Small utility to **demonize PHP's internal webserver**.
 
-| [![Build Status](https://travis-ci.org/clickalicious/webserver-daemon.svg?branch=master)](https://travis-ci.org/clickalicious/webserver-daemon) 	| [![Codacy branch grade](https://img.shields.io/codacy/grade/8c129b9effb64446a8d2d30eaf305679/master.svg)](https://www.codacy.com/app/clickalicious/webserver-daemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserver-daemon&utm_campaign=Badge_Grade) 	| [![Codacy coverage](https://img.shields.io/codacy/coverage/c73c519d18dd4d6ca703271b4d5faccf.svg)](https://www.codacy.com/app/clickalicious/webserver-daemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserver-daemon&utm_campaign=Badge_Grade) 	| [![clickalicious open source](https://img.shields.io/badge/clickalicious-open--source-green.svg?style=flat)](https://clickalicious.de/) 	|
+| [![Build Status](https://travis-ci.org/clickalicious/webserver-daemon.svg?branch=master)](https://travis-ci.org/clickalicious/webserver-daemon) 	| [![Codacy branch grade](https://img.shields.io/codacy/grade/c73c519d18dd4d6ca703271b4d5faccf/master.svg)](https://www.codacy.com/app/clickalicious/webserver-daemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserver-daemon&utm_campaign=Badge_Grade) 	| [![Codacy coverage](https://img.shields.io/codacy/coverage/c73c519d18dd4d6ca703271b4d5faccf.svg)](https://www.codacy.com/app/clickalicious/webserver-daemon?utm_source=github.com&utm_medium=referral&utm_content=clickalicious/webserver-daemon&utm_campaign=Badge_Grade) 	| [![clickalicious open source](https://img.shields.io/badge/clickalicious-open--source-green.svg?style=flat)](https://clickalicious.de/) 	|
 |---	|---	|---	|---	|
 | [![GitHub release](https://img.shields.io/github/release/clickalicious/webserver-daemon.svg?style=flat)](https://github.com/clickalicious/webserver-daemon/releases) 	| [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)  	| [![Issue Stats](https://img.shields.io/issuestats/i/github/clickalicious/webserver-daemon.svg)](https://github.com/clickalicious/webserver-daemon/issues) 	| [![Dependency Status](https://dependencyci.com/github/clickalicious/webserver-daemon/badge)](https://dependencyci.com/github/clickalicious/webserver-daemon)  	|
 
@@ -32,7 +32,6 @@ Small utility to **demonize PHP's internal webserver**.
  - Multi process support
  - High-quality & stable codebase (following PSR standards e.g. `PSR-1,2,4`)
  - Built on top of good PHP libraries
- - PHP >= 7.2 ready
  - Clean + well documented code
  - Unit-tested with a good coverage
 
@@ -42,12 +41,13 @@ Small utility to **demonize PHP's internal webserver**.
 We provided some examples in the directory "[demo](demo/)" on How-To use the library and wrapper around PHP's internal webserver: 
 
 ### PHP
+
 An example on how to use the library in PHP context:
 ```php
 <?php
  
 // Create an instance of PHP's internal webserver
-$webserverDaemon = new \Webserver\Daemon\Demonize(
+$webserverDaemon = new \Clickalicious\Webserver\Daemon\Demonize(
     $interface,
     $port,
     $documentRoot,
@@ -69,6 +69,7 @@ $webserverDaemon->getPid();
 
 
 ### Start
+
 The following simple example shows how the daemon can be `started`:
 [Demo START daemon »](demo/start.php)
 
@@ -78,6 +79,7 @@ $> php demo/start.php
 ```
 
 ### Stop
+
 The following simple example shows how the daemon can be `stopped`:
 [Demo STOP daemon »](demo/stop.php)
 
@@ -87,6 +89,7 @@ $> php demo/stop.php
 ```
 
 ### Restart
+
 The following simple example shows how the daemon can be `restarted`:
 [Demo RESTART daemon »](demo/restart.php)
 
@@ -96,6 +99,7 @@ $> php demo/restart.php
 ```
 
 ### Status
+
 The following simple example shows how the `status` of the daemon can be queried:
 [Demo STATUS daemon »](demo/status.php)
 
@@ -107,12 +111,12 @@ $> php demo/status.php
 
 ## Requirements
 
- - `PHP >= 5.6` (compatible up to version 5.6 as well as >= 7.2)
+ - `PHP >= 5.6` (compatible up to version `7.2` as well as `HHVM`)
 
 
 ## Philosophy
 
-This library provides the functionality to daemonize PHP's internal webserver and send the process to background without blocking the `console` or process starting the internal webserver. It uses PHP's pipes to register an I/O stream filter and fetches  
+This library provides the functionality to daemonize PHP's internal webserver and send the process to background without blocking the `console` or process starting the internal webserver.
 
 
 ## Versioning
@@ -150,4 +154,4 @@ Thanks to our sponsors and supporters:
 
 
 ###### Copyright
-<div>Icons made by <a href="http://www.flaticon.com/authors/designmodo" title="Designmodo">Designmodo</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
