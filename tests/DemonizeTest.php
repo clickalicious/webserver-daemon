@@ -27,7 +27,7 @@
 
 namespace Clickalicious\Webserver\Daemon;
 
-use Rng\Generator;
+use Clickalicious\Rng\Generator;
 use PHPUnit\Framework\TestCase;
 
 /**
