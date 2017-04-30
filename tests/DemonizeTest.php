@@ -119,7 +119,6 @@ class DemonizeTest extends TestCase
                 unlink($logFile);
             }
 
-            // Check if exists and if is file ...
             if (true === file_exists($pidFile) && true === is_file($pidFile)) {
                 unlink($pidFile);
             }
