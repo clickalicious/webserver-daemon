@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Webserverdaemon
- *
  * (The MIT license)
- * Copyright 2017 clickalicious UG, Benjamin Carl
+ * Copyright 2017 clickalicious, Benjamin Carl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the
@@ -25,13 +23,11 @@
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
- * @package Webserverdaemon
  */
 
-namespace Webserverdaemon;
+namespace Clickalicious\Webserver\Daemon;
 
-use Rng\Generator;
+use Clickalicious\Rng\Generator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -139,7 +135,7 @@ class DemonizeTest extends TestCase
     public function testCreatingInstanceWithDefaults()
     {
         $instance = new Demonize();
-        self::assertInstanceOf('\\Webserverdaemon\\Demonize', $instance);
+        self::assertInstanceOf('\\Clickalicious\\Webserver\\Daemon\\Demonize', $instance);
     }
 
     /**
@@ -157,11 +153,11 @@ class DemonizeTest extends TestCase
         // Enrich with mock data
         $arguments = $this->injectRandomizedMockData($arguments);
 
-        $reflection = new \ReflectionClass('\\Webserverdaemon\\Demonize');
+        $reflection = new \ReflectionClass('\\Clickalicious\\Webserver\\Daemon\\Demonize');
         /* @var $instance Demonize*/
         $instance   = $reflection->newInstanceArgs($arguments);
 
-        self::assertInstanceOf('\\Webserverdaemon\\Demonize', $instance);
+        self::assertInstanceOf('\\Clickalicious\\Webserver\\Daemon\\Demonize', $instance);
     }
 
     /**
@@ -179,7 +175,7 @@ class DemonizeTest extends TestCase
         // Enrich with mock data
         $arguments = $this->injectRandomizedMockData($arguments);
 
-        $reflection = new \ReflectionClass('\\Webserverdaemon\\Demonize');
+        $reflection = new \ReflectionClass('\\Clickalicious\\Webserver\\Daemon\\Demonize');
         /* @var $instance Demonize*/
         $instance   = $reflection->newInstanceArgs($arguments);
 
@@ -212,7 +208,7 @@ class DemonizeTest extends TestCase
      */
     public function testStartStatusRestartStopDaemonWithCustomInvalidArgument(array $arguments)
     {
-        $reflection = new \ReflectionClass('\\Webserverdaemon\\Demonize');
+        $reflection = new \ReflectionClass('\\Clickalicious\\Webserver\\Daemon\\Demonize');
         /* @var $instance Demonize*/
         $instance   = $reflection->newInstanceArgs($arguments);
 
@@ -220,15 +216,15 @@ class DemonizeTest extends TestCase
         self::assertFalse($result);
 
         /*
-$result = $instance->status(self::PRINT_RESULT);
-self::assertTrue($result);
+            $result = $instance->status(self::PRINT_RESULT);
+            self::assertTrue($result);
 
-$result = $instance->restart(self::PRINT_RESULT);
-self::assertTrue($result);
+            $result = $instance->restart(self::PRINT_RESULT);
+            self::assertTrue($result);
 
-$result = $instance->stop(self::PRINT_RESULT);
-self::assertTrue($result);
-*/
+            $result = $instance->stop(self::PRINT_RESULT);
+            self::assertTrue($result);
+        */
     }
 
     /**

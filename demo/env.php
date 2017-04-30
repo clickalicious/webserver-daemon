@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Webserverdaemon
- *
  * (The MIT license)
- * Copyright 2017 clickalicious UG, Benjamin Carl
+ * Copyright 2017 clickalicious, Benjamin Carl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the
@@ -26,10 +24,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 global $interface, $port, $documentRoot, $phpBinary, $tempDir, $uid;
 
-$dirUp = realpath(__DIR__ . '/..');
+$dirUp = dirname(__DIR__);
 
 // Get configuration optionally from environment ...
 $interface    = getenv('interface')    ? getenv('interface')    : '0.0.0.0';

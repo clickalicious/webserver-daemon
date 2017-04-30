@@ -1,5 +1,5 @@
 {
-  "name": "clickalicious/webserverdaemon",
+  "name": "clickalicious/webserver-daemon",
   "description": "Small utility to demonize PHP's internal webserver.",
   "type": "library",
   "authors": [
@@ -10,12 +10,12 @@
       "role": "Lead"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "prefer-stable": true,
   "require": {
     "php": ">=5.6.0",
     "roave/security-advisories": "dev-master as 1.0.x-dev",
-    "clickalicious/rng": "^2.0",
+    "clickalicious/rng": "^3.0",
     "beberlei/assert": "^2.7"
   },
   "require-dev": {
@@ -25,37 +25,38 @@
   },
   "autoload": {
     "psr-4": {
-      "Webserverdaemon\\": "src/Webserverdaemon/"
+      "Clickalicious\\Webserver\\Daemon\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Webserverdaemon\\": "tests/Webserverdaemon/"
+      "Clickalicious\\Webserver\\Daemon\\": "tests/"
     },
     "files": [
       "demo/env.php"
     ]
   },
   "keywords": [
-    "composer",
-    "php",
-    "webserverdaemon",
+    "webserver-daemon",
     "webserver",
+    "php",
     "daemon",
     "demon",
     "demonize",
-    "unittest"
+    "unittest",
+    "control",
+    "init"
   ],
-  "homepage": "https://clickalicious.github.io/webserverdaemon",
+  "homepage": "https://clickalicious.github.io/webserver-daemon",
   "license": "MIT",
   "support": {
     "email": "opensource@clickalicious.de",
-    "issues": "https://github.com/clickalicious/webserverdaemon/issues",
-    "wiki": "https://github.com/clickalicious/webserverdaemon/wiki",
-    "tests": "https://clickalicious.github.io/webserverdaemon"
+    "issues": "https://github.com/clickalicious/webserver-daemon/issues",
+    "wiki": "https://github.com/clickalicious/webserver-daemon/wiki",
+    "tests": "https://clickalicious.github.io/webserver-daemon"
   },
   "config": {
     "bin-dir": "bin",
-    "preferred-install": "source"
+    "preferred-install": "dist"
   }
 }
