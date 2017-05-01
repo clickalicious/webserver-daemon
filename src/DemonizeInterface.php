@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Webserverdaemon
- *
  * (The MIT license)
- * Copyright 2017 clickalicious UG, Benjamin Carl
+ * Copyright 2017 clickalicious, Benjamin Carl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the
@@ -27,7 +25,7 @@
  * SOFTWARE.
  */
 
-namespace Webserverdaemon;
+namespace Clickalicious\Webserver\Daemon;
 
 /**
  * Interface DemonizeInterface

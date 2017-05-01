@@ -1,8 +1,7 @@
-# Project specific
+# clickalicious
 __*/
-docs/coverage/*
-bin/*
 build/*
+bin/*
 
 # Composer
 vendor/
