@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Webserverdaemon
- *
  * (The MIT license)
- * Copyright 2017 clickalicious UG, Benjamin Carl
+ * Copyright 2017 clickalicious, Benjamin Carl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the
@@ -27,7 +25,7 @@
  * SOFTWARE.
  */
 
-namespace Webserverdaemon;
+namespace Clickalicious\Webserver\Daemon;
 
 use Assert\Assertion;
 
@@ -323,7 +321,7 @@ class Demonize implements DemonizeInterface
         if (true === $this->status(false)) {
             $status     = false;
             $statusText = sprintf(
-                'Webserverdaemon (UID: %s) process (PID: %s) already running!',
+                'webserver-daemon (UID: %s) process (PID: %s) already running!',
                 $this->uid,
                 $this->pid
             );
@@ -351,7 +349,7 @@ class Demonize implements DemonizeInterface
 
             $status     = true;
             $statusText = sprintf(
-                'Webserverdaemon (UID: %s) process (PID: %s) %s.',
+                'webserver-daemon (UID: %s) process (PID: %s) %s.',
                 $this->uid,
                 $this->pid,
                 (true === $restarted) ? 'restarted' : 'started'
@@ -375,7 +373,7 @@ class Demonize implements DemonizeInterface
         // Assume not running so we cannot stop it
         $status     = false;
         $statusText = sprintf(
-            'Webserverdaemon (UID: %s) not running so it could not be stopped.',
+            'webserver-daemon (UID: %s) not running so it could not be stopped.',
             $this->uid
         );
 
@@ -390,7 +388,7 @@ class Demonize implements DemonizeInterface
                 if (0 !== $killCheckResult) {
                     throw new \RuntimeException(
                         sprintf(
-                            'Error killing Webserverdaemon (UID: %s) process (PID %s) via "kill" (commandline: "%s")!',
+                            'Error killing webserver-daemon (UID: %s) process (PID %s) via "kill" (commandline: "%s")!',
                             $this->uid,
                             $this->pid,
                             $commandline
@@ -401,7 +399,7 @@ class Demonize implements DemonizeInterface
 
             $status     = true;
             $statusText = sprintf(
-                'Webserverdaemon (UID: %s) process (PID: %s) stopped.',
+                'webserver-daemon (UID: %s) process (PID: %s) stopped.',
                 $this->uid,
                 $this->pid
             );
@@ -450,7 +448,7 @@ class Demonize implements DemonizeInterface
 
         // Assume not running
         $status     = false;
-        $statusText = sprintf('Webserverdaemon (UID: %s) not running.', $this->uid);
+        $statusText = sprintf('webserver-daemon (UID: %s) not running.', $this->uid);
 
         if (null !== $this->pid) {
             $commandline = sprintf('ps -p %s 2>&1', $this->pid);
@@ -465,7 +463,7 @@ class Demonize implements DemonizeInterface
                 if (0 !== $psCheckResult) {
                     throw new \RuntimeException(
                         sprintf(
-                            'Error retrieving Webserverdaemon (UID: %s) process status via "ps" (commandline: "%s")!',
+                            'Error retrieving webserver-daemon (UID: %s) process status via "ps" (commandline: "%s")!',
                             $this->uid,
                             $commandline
                         )
@@ -474,7 +472,7 @@ class Demonize implements DemonizeInterface
             }
 
             $statusText = sprintf(
-                'Webserverdaemon (UID: %s) process (PID: %s) not found!',
+                'webserver-daemon (UID: %s) process (PID: %s) not found!',
                 $this->uid,
                 $this->pid
             );
@@ -483,7 +481,7 @@ class Demonize implements DemonizeInterface
                 if (false !== strpos($responseLine, $this->pid)) {
                     $status     = true;
                     $statusText = sprintf(
-                        'Webserverdaemon (UID: %s) process (PID: %s) running ...%s%s',
+                        'webserver-daemon (UID: %s) process (PID: %s) running ...%s%s',
                         $this->uid,
                         $this->pid,
                         PHP_EOL,

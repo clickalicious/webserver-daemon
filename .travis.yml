@@ -1,15 +1,23 @@
 language: php
 
 php:
+  - 5.3
+  - 5.4
+  - 5.5
   - 5.6
   - 7.0
   - 7.1
+  - nightly
   - hhvm
 
 sudo: true
 
 matrix:
   allow_failures:
+    - php: 5.3
+    - php: 5.4
+    - php: 5.5
+    - php: nightly
     - php: hhvm
   fast_finish: true
 
@@ -22,15 +30,14 @@ env:
   - PREFER_LOWEST=""
 
 before_script:
-  - composer update --prefer-dist $PREFER_LOWEST
+  - composer update --ignore-platform-reqs --prefer-dist $PREFER_LOWEST
   - composer --optimize-autoloader --no-interaction
 
 script:
   - bin/phpunit --configuration . --coverage-clover=build/logs/clover.xml --coverage-html=build/html/coverage
 
 after_script:
-  # We upload only for reference platform! This is our base for further code analyses and so on.
-  - if [ $(phpenv version-name) == "5.6" ] && [ "$PREFER_LOWEST" == "--prefer-lowest" ]; then bin/codacycoverage clover build/logs/clover.xml -vvv; fi
+  - if [ $(phpenv version-name) == "5.6" ] && [ "$PREFER_LOWEST" == "--prefer-lowest" ]; then bin/codacycoverage clover build/logs/clover.xml > /dev/null 2>&1; fi
 
 after_success:
   # Push coverage to github pages branch
@@ -43,9 +50,9 @@ after_success:
   - echo -n $GIT_TAG > public/version
   - git commit -m "Set build VERSION number" public/version
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
-  - git push --tags --quiet https://$GITHUBKEY@github.com/clickalicious/webserverdaemon > /dev/null 2>&1
+  - git push --tags --quiet https://$GITHUBKEY@github.com/clickalicious/webserver-daemon > /dev/null 2>&1
 
-# blacklist
+# Blacklist the pushed tag from above to prevent black hole
 branches:
   except:
     - /^build-[0-9a-z\-]*/
@@ -53,7 +60,7 @@ branches:
 # Who to notify?
 notifications:
   slack:
-    secure: jg72gIt0LLN0bc8QnILaYuSDpxnrsPjvX1nXzZqY9z6YFEBLPNmPZgPf3R1EDMesJDbUEAWD/s60bhBa2B9UjxT1Cr6wxHuisuiAEMjbQn9CkQHy+LDp9lyj+KzY+3ZmelLsQXbU3v9mSF1aGQqmW46GGR21NDDBkF2+9u28izOV0qE/086jKW97OQx9099OTl85BkQgV69lIG/Lq09kCL0C6ErIPe2IBsFuFDMLDHAJJzwOvfvJ2QB1snjriKI5acu76dOeGr5dZF4CTFHxnh2AZj2earzUIVTDB7aADaQa7/Goc38wim3r2kEt00Nni70wT8Ztk865fIfXFejgykYiDnlg+oIpfEyZwqpYWxX+O3hJmAz9skick/0UZ4HuvxLM94N9aex2LuSONOutf2UmaRfPj6VUqjFisBDOuVR2qrNAKuvZxVy30szLvyGNmqUvLIvZVVO/qMg1reEBAqyXK0UH3w0RsKpLzj92NtEAab4NtLUQZ6Ne7+ouJQ7v8y2/QdQg6Mf2Qth4sBgTXmNGqiZ0UJGtWJumfTH0sIneqnM5qkYl7GIkpy/PBUU5Cv1mDqk+Q4dd27vs9A7ptDXnnPSv1Nx4Z+6v5Ut8ZwgxDpgvZMNl1nQwAJD6v/i1TCNl6buny7dx1HvvX5v/GPY/8m2R+9soDg5pkWzsEwQ=
+    secure: HixCatOvGrTEhzQ2qfUXpAx4trTNj3WcaFbsHoT36DNb1gczofga4dvXwzHc9ntIvUpYftq7FN9Fb1ja5Ek5h4tRlBzeLW8cy9KgZJVYX7Akx5dInhZI/8sYumYB2BsH55x/dr8ASctmnoN2JPHkacZ0ejQZel21sI/FlPVVl31EOKYYBV2aN/LBXW6HuxzbNBpcDlRPAlIKE+FkZ6p89b8cJiOsC01deNRJN66w0obOlq88zbDlkDg8zBmGE+KlyQWOg4ZY1GYhVlCUDd9u2ilnMQBzp1QfzMsD0E65RJSED9vUcLfwEnA3XKYawcHo7WuqFne7JKxK9p30Q0TQeNTAdKSZq4o0RiY1a1Tsl0sRZYVhFtCV4DqtgPtswPaIwA56wc3fjNTiU4OnR6tVcfdMiZPGZ4d+Hckms3DLhrcEGykp2hpJozoh3dE4JUdExmvZE1bNEbgK7sHwsVFtx+P4E9YwV+O1ULxHGFgdNbGx+fHeU9KajwQWTpwJcnPmK0VQfzxf8KWpczvXFapMuizIlRZqsCMVOtPf316/5X2jE3GOQT3K4QrBHWrZEjR6J+bcpA70nDazp5dRZFgso2R0a8ThnIMysuA0QgZMPCSnPrIGI2mSkSUim4xp8V7GViC0QNaqtYWZQMRLvyvk3lo9b5AKL6WE8NweTwRu+CI=
   email:
     recipients:
       - opensource@clickalicious.de
