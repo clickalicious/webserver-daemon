@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Webserverdaemon
- *
  * (The MIT license)
- * Copyright 2017 clickalicious UG, Benjamin Carl
+ * Copyright 2017 clickalicious, Benjamin Carl
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the
@@ -31,7 +29,7 @@ require_once dirname(__FILE__, 2).'/vendor/autoload.php';
 require_once __DIR__ . '/env.php';
 
 // Create an instance of PHP's internal webserver
-$webserverDaemon = new \Webserverdaemon\Demonize(
+$webserverDaemon = new \Clickalicious\Webserver\Daemon\Demonize(
     $interface,
     $port,
     $documentRoot,
